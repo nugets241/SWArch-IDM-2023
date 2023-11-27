@@ -1,7 +1,5 @@
 package fi.tamk.sade23.idm;
 
-import java.util.HashMap;
-
 public class Contact {
     private String firstName;
     private String lastName;
@@ -35,7 +33,7 @@ public class Contact {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setPersonalEmail(String email) {
         this.email = email;
     }
 
@@ -46,5 +44,14 @@ public class Contact {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-}
 
+    private ContactAttributeStrategy strategy;
+
+    public void setStrategy(ContactAttributeStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void applyStrategy() {
+        strategy.setAttributes(this);
+    }
+}

@@ -1,13 +1,29 @@
 package fi.tamk.sade23.idm;
 
 public class StaffAttributeStrategy implements IdentityAttributeStrategy {
+    private String userType;
+    private String firstName;
+    private String lastName;
+    private String institution;
+    private String contractEndDate;
+    private String personalEmail;
+
+    public StaffAttributeStrategy(String userType, String firstName, String lastName, String institution, String contractEndDate, String personalEmail) {
+        this.userType = userType;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.institution = institution;
+        this.contractEndDate = contractEndDate;
+        this.personalEmail = personalEmail;
+    }
+
     @Override
     public void setAttributes(Identity identity) {
-        identity.setUserType("Staff");
-        identity.setFirstName("StaffFirstName");
-        identity.setLastName("StaffLastName");
-        identity.setInstitution("StaffInstitution");
-        identity.setContractEndDate("StaffContractEndDate");
-        identity.setPersonalEmail("StaffPersonalEmail");
+        identity.setUserType(userType);
+        identity.setFirstName(firstName);
+        identity.setLastName(lastName);
+        identity.setInstitution(institution);
+        identity.setContractEndDate(contractEndDate);
+        identity.setPersonalEmail(personalEmail);
     }
 }

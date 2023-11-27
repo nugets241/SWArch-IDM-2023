@@ -19,7 +19,12 @@ public class ContactsService {
     }
 
     public void modifyContact(Integer id, String firstName, String lastName, String email, String phoneNumber) {
-        Contact contact = new Contact(firstName, lastName, email, phoneNumber);
-        contacts.put(id, contact);
+        Contact contact = contacts.get(id);
+        if (contact != null) {
+            contact.setFirstName(firstName);
+            contact.setLastName(lastName);
+            contact.setPersonalEmail(email);
+            contact.setPhoneNumber(phoneNumber);
+        }
     }
 }
