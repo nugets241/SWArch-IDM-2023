@@ -64,4 +64,14 @@ public abstract class Identity {
     public void setPersonalEmail(String personalEmail) {
         this.personalEmail = personalEmail;
     }
+
+    private IdentityAttributeStrategy strategy;
+
+    public void setStrategy(IdentityAttributeStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void applyStrategy() {
+        strategy.setAttributes(this);
+    }
 }
