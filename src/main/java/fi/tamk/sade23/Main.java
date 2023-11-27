@@ -6,17 +6,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        IdmService idmService = new IdmService();
-        SadeIdentity identity1 = idmService.createIdentity("Bob", "Marley","Reggae");
-        System.out.println("First: " + identity1.getDisplayName());
+        Staff staff = new Staff("Bob", "Marley", "Staff", "Reggae University", "2023-12-31", "bob.marley@example.com", "Professor");
+        System.out.println("Staff: " + staff.getFirstName() + " " + staff.getLastName() + ", " + staff.getStaffSpecificAttribute());
 
-        // Create instances of Staff, Student, and Visitor
-        SadeIdentity staffIdentity = new Staff("Bob", "Marley", "Reggae");
-        SadeIdentity studentIdentity = new Student("Alice", "Cooper", "Rock");
-        SadeIdentity visitorIdentity = new Visitor("Elvis", "Presley", "RocknRoll");
+        Student student = new Student("Alice", "Cooper", "Student", "Rock University", "2023-06-30", "alice.cooper@example.com", "Undergraduate");
+        System.out.println("Student: " + student.getFirstName() + " " + student.getLastName() + ", " + student.getStudentSpecificAttribute());
 
-        System.out.println(staffIdentity.getDisplayName());
-        System.out.println(studentIdentity.getDisplayName());
-        System.out.println(visitorIdentity.getDisplayName());
+        Visitor visitor = new Visitor("Jimmy", "Page", "Visitor", "Blues College", "2023-03-31", "jimmy.page@example.com", "Guest Lecturer");
+        System.out.println("Visitor: " + visitor.getFirstName() + " " + visitor.getLastName() + ", " + visitor.getVisitorSpecificAttribute());
     }
 }

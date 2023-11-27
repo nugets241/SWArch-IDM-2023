@@ -1,13 +1,18 @@
 package fi.tamk.sade23.idm;
 
-public class Visitor extends SadeIdentity {
-    public Visitor(String firstName, String lastName, String org) {
-        super(firstName, lastName, org);
+public class Visitor extends Identity {
+    private String visitorSpecificAttribute;
+
+    public Visitor(String firstName, String lastName, String userType, String institution, String contractEndDate, String personalEmail, String visitorSpecificAttribute) {
+        super(firstName, lastName, userType, institution, contractEndDate, personalEmail);
+        this.visitorSpecificAttribute = visitorSpecificAttribute;
     }
 
-    @Override
-    public String getDisplayName() {
-        // Return the display name in a different format for visitor members
-        return "Visitor: " + super.getDisplayName();
+    public String getVisitorSpecificAttribute() {
+        return visitorSpecificAttribute;
+    }
+
+    public void setVisitorSpecificAttribute(String visitorSpecificAttribute) {
+        this.visitorSpecificAttribute = visitorSpecificAttribute;
     }
 }
