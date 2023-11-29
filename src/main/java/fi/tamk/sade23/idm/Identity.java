@@ -1,6 +1,6 @@
 package fi.tamk.sade23.idm;
 
-public abstract class Identity {
+public abstract class Identity implements IdentityObserver {
     protected String firstName;
     protected String lastName;
     protected String userType;
@@ -71,7 +71,12 @@ public abstract class Identity {
         this.strategy = strategy;
     }
 
-    public void applyStrategy() {
-        strategy.setAttributes(this);
+    public void applyStrategy(String password) {
+        strategy.setAttributes(this, password);
+    }
+
+    @Override
+    public void update(Identity identity) {
+        System.out.println("Observer notified. New first name: " + this.firstName);
     }
 }

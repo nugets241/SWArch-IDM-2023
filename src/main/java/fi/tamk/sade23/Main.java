@@ -6,24 +6,38 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
+        // Create an IdentityData object to manage and notify observers
+        IdentityData identityData = new IdentityData();
+
+        // Create a ContactService object
         ContactsService contactsService = new ContactsService();
 
+        // Create a Staff object and a corresponding IdentityProxy
         Staff staff = new Staff("Bob", "Marley", "Staff", "Reggae University", "2023-12-31", "bob.marley@example.com", "Professor");
+        IdentityProxy staffProxy = new IdentityProxy(new StaffAttributeStrategy("Staff", "Charles", "Downey", "Reggae University", "2023-12-31", "bob.marley@example.com"), "password123");
+
+        // Use the proxy to set the attributes of the Staff object
+        staffProxy.setAttributes(staff, "password123");
+
+        // Register the Staff object with the IdentityData object
+        identityData.registerObserver(staff);
+
+        // Create a Contact object for the Staff object
         Contact bob = contactsService.createContact(staff.getFirstName(), staff.getLastName(), staff.getPersonalEmail(), "+123456789");
+
+        // Set and apply the strategy for the Contact object
         bob.setStrategy(new IDMAdapter(staff));
         bob.applyStrategy();
+
+        // Print the contact information
         System.out.println("Contact: " + bob.getFirstName() + " " + bob.getLastName() + ", " + bob.getEmail());
 
-        Student student = new Student("Alice", "Cooper", "Student", "Rock University", "2023-06-30", "alice.cooper@example.com", "Undergraduate");
-        Contact alice = contactsService.createContact(student.getFirstName(), student.getLastName(), student.getPersonalEmail(), "+987654321");
-        alice.setStrategy(new IDMAdapter(student));
-        alice.applyStrategy();
-        System.out.println("Contact: " + alice.getFirstName() + " " + alice.getLastName() + ", " + alice.getEmail());
+        System.out.println("Staff: " + staff.getFirstName() + " " + staff.getLastName());
 
-        Visitor visitor = new Visitor("Jimmy", "Page", "Visitor", "Blues College", "2023-03-31", "jimmy.page@example.com", "Guest Lecturer");
-        Contact jimmy = contactsService.createContact(visitor.getFirstName(), visitor.getLastName(), visitor.getPersonalEmail(), "+123987456");
-        jimmy.setStrategy(new IDMAdapter(visitor));
-        jimmy.applyStrategy();
-        System.out.println("Contact: " + jimmy.getFirstName() + " " + jimmy.getLastName() + ", " + jimmy.getEmail());
+        // Change an attribute of the Staff object and notify observers
+        staff.setFirstName("Robert");
+        identityData.setIdentity(staff);
+
+        System.out.println("Staff: " + staff.getFirstName() + " " + staff.getLastName());
     }
 }

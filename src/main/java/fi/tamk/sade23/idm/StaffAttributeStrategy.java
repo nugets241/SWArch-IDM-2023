@@ -18,7 +18,7 @@ public class StaffAttributeStrategy implements IdentityAttributeStrategy {
     }
 
     @Override
-    public void setAttributes(Identity identity) {
+    public void setAttributes(Identity identity, String password) {
         identity.setUserType(userType);
         identity.setFirstName(firstName);
         identity.setLastName(lastName);
